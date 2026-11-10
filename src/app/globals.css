@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Brand palette - taken from the logo:                                */
+/*   green gradient  #008744 -> #00A651                                */
+/*   charcoal        #262626 / #2D3134                                 */
+/*   white           #FFFFFF                                           */
+/*                                                                     */
+/* Semantic tokens (page, surface, fg, muted, line, accent) change     */
+/* with the nearest [data-theme] ancestor, so the same classes work on */
+/* light sections (default) and dark sections (data-theme="dark").     */
+/* ------------------------------------------------------------------ */
+:root,
+[data-theme="light"] {
+  --page: #ffffff;
+  --surface: #f3f6f4;
+  --fg: #262626;
+  --muted: #5b6268;
+  --line: rgb(38 38 38 / 0.14);
+  --accent: #008744; /* green text on white: 4.6:1 contrast */
+  --danger: #b42318;
+}
+
+[data-theme="dark"] {
+  --page: #262626;
+  --surface: #2d3134;
+  --fg: #ffffff;
+  --muted: #aab1b6;
+  --line: rgb(255 255 255 / 0.14);
+  --accent: #2bd17e; /* green text on charcoal */
+  --danger: #fda29b;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+
+  /* fixed brand colours (do not change with the theme) */
+  --color-ink: #262626;
+  --color-slate: #2d3134;
+  --color-brand: #00a651;
+  --color-brand-600: #008744;
+  --color-brand-700: #00763b;
+  --color-mint: #e6f5ec;
+
+  --font-heading: var(--font-phudu), "Arial Narrow", Impact, sans-serif;
+  --font-sans: var(--font-instrument), system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
+  --animate-orbit: orbit 28s linear infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--tilt, 0deg));
+    }
+    50% {
+      transform: translateY(-14px) rotate(var(--tilt, 0deg));
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(-4%, -2%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(5%, 4%, 0) scale(1.18);
+    }
+  }
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    background: var(--page);
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  /* text colour follows the theme of the nearest section */
+  [data-theme] {
+    color: var(--fg);
+  }
+
+  body {
+    background: var(--page);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* The logo's green gradient. */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(135deg, #008744 0%, #00a651 100%);
+}
+
+/* Deeper start so white button labels keep a readable contrast (>= 4.5:1). */
+@utility bg-brand-button {
+  background-image: linear-gradient(120deg, #00763b 0%, #008744 45%, #00a651 100%);
+}
+
+/* Gradient-filled text for accent words in headlines. */
+@utility text-brand-gradient {
+  background-image: linear-gradient(100deg, #008744 0%, #00a651 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+/*
+ * Film-grain overlay used on gradient sections. The host element must already
+ * be positioned (relative/absolute). Kept in the components layer so Tailwind
+ * utilities such as `absolute` can still override it.
+ */
+@layer components {
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll animations                                                   */
+/* Content is visible by default; JS only hides what is below the fold */
+/* and reveals it on scroll (see hooks/use-reveal.ts).                 */
+/* ------------------------------------------------------------------ */
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.split-char {
+  display: inline-block;
+  transform-origin: 0 100%;
+}
+[data-split="hidden"] .split-char {
+  opacity: 0;
+  transform: translateY(0.7em) rotate(7deg);
+}
+[data-split="in"] .split-char {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 16ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+}
