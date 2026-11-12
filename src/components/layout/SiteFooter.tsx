@@ -12,10 +12,10 @@ export function SiteFooter() {
       data-theme="dark"
       className="relative isolate mt-auto overflow-hidden bg-page text-fg"
     >
-      {/* green glow, same family as the hero */}
+      {/* warm glow, same family as the hero */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute -left-[10%] top-[-25%] h-[90%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.30),transparent)] blur-3xl" />
-        <div className="absolute -bottom-[40%] right-[5%] h-[100%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(0,135,68,.30),transparent)] blur-3xl" />
+        <div className="absolute -left-[10%] top-[-25%] h-[90%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.30),transparent)] blur-3xl" />
+        <div className="absolute -bottom-[40%] right-[5%] h-[100%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(155,28,36,.30),transparent)] blur-3xl" />
       </div>
 
       <div className="container-x grid lg:grid-cols-[1.3fr_1fr]">

@@ -26,6 +26,30 @@ export function whatsappLink(message?: string): string | null {
   return `https://wa.me/${whatsappDigits}${text}`;
 }
 
+/** "#" means "not configured" - those are filtered out of `siteConfig.socials`. */
+const socialCandidates = [
+  {
+    key: "facebook",
+    label: "Facebook",
+    href: fromEnv(process.env.NEXT_PUBLIC_FACEBOOK_URL, "#"),
+  },
+  {
+    key: "instagram",
+    label: "Instagram",
+    href: fromEnv(process.env.NEXT_PUBLIC_INSTAGRAM_URL, "#"),
+  },
+  {
+    key: "linkedin",
+    label: "LinkedIn",
+    href: fromEnv(process.env.NEXT_PUBLIC_LINKEDIN_URL, "#"),
+  },
+  {
+    key: "whatsapp",
+    label: "WhatsApp",
+    href: whatsappLink() ?? "#",
+  },
+] as const;
+
 export const siteConfig = {
   name: "The Publicity",
   tagline: "Your Phygital marketing partner",
@@ -47,28 +71,8 @@ export const siteConfig = {
   phoneHref: hasRealPhone ? `tel:${phone.replace(/[^\d+]/g, "")}` : "/contact",
   hours: process.env.NEXT_PUBLIC_BUSINESS_HOURS?.trim() || null,
   hasWhatsapp: Boolean(whatsappDigits),
-  socials: [
-    {
-      key: "facebook",
-      label: "Facebook",
-      href: fromEnv(process.env.NEXT_PUBLIC_FACEBOOK_URL, "#"),
-    },
-    {
-      key: "instagram",
-      label: "Instagram",
-      href: fromEnv(process.env.NEXT_PUBLIC_INSTAGRAM_URL, "#"),
-    },
-    {
-      key: "linkedin",
-      label: "LinkedIn",
-      href: fromEnv(process.env.NEXT_PUBLIC_LINKEDIN_URL, "#"),
-    },
-    {
-      key: "whatsapp",
-      label: "WhatsApp",
-      href: whatsappLink() ?? "#",
-    },
-  ],
+  /** Only networks with a URL in `.env` are shown, so there are never dead icons. */
+  socials: socialCandidates.filter((social) => social.href !== "#"),
 } as const;
 
-export type SocialKey = (typeof siteConfig.socials)[number]["key"];
+export type SocialKey = (typeof socialCandidates)[number]["key"];

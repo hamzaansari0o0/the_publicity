@@ -13,8 +13,8 @@ export default function NotFound() {
       className="grain relative isolate flex min-h-[100svh] items-center overflow-hidden bg-page pt-24 text-fg"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute -left-[10%] top-[-20%] h-[100%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.32),transparent)] blur-3xl" />
-        <div className="absolute -bottom-[30%] right-[-10%] h-[100%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(0,135,68,.40),transparent)] blur-3xl" />
+        <div className="absolute -left-[10%] top-[-20%] h-[100%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.32),transparent)] blur-3xl" />
+        <div className="absolute -bottom-[30%] right-[-10%] h-[100%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(155,28,36,.40),transparent)] blur-3xl" />
       </div>
       <div className="container-x text-center">
         <p className="font-heading text-[clamp(8rem,28vw,22rem)] font-extrabold leading-[0.8] text-accent">

@@ -24,8 +24,8 @@ export function PageBanner({
       className="grain relative isolate overflow-hidden bg-page pb-14 pt-36 text-fg md:pb-24 md:pt-52"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute -left-[10%] -top-[40%] h-[100%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.32),transparent)] blur-3xl" />
-        <div className="absolute -right-[10%] top-[10%] h-[90%] w-[50%] rounded-full bg-[radial-gradient(closest-side,rgba(0,135,68,.40),transparent)] blur-3xl" />
+        <div className="absolute -left-[10%] -top-[40%] h-[100%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.32),transparent)] blur-3xl" />
+        <div className="absolute -right-[10%] top-[10%] h-[90%] w-[50%] rounded-full bg-[radial-gradient(closest-side,rgba(155,28,36,.40),transparent)] blur-3xl" />
         {/* decorative rings */}
         <div className="absolute -right-52 top-6 size-[560px] rounded-full border border-fg/10" />
         <div className="absolute -right-24 top-[88px] size-[400px] rounded-full border border-fg/10" />

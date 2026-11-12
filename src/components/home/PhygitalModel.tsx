@@ -22,7 +22,7 @@ export function PhygitalModel({ number = "07" }: { number?: string }) {
     >
       <div
         aria-hidden="true"
-        className="absolute -right-[10%] top-0 -z-10 h-[70%] w-[50%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.20),transparent)] blur-3xl"
+        className="absolute -right-[10%] top-0 -z-10 h-[70%] w-[50%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.20),transparent)] blur-3xl"
       />
       <div className="container-x">
         <SectionLabel number={number} label="The Phygital model" />
@@ -33,7 +33,7 @@ export function PhygitalModel({ number = "07" }: { number?: string }) {
         />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-[190px_1fr]">
-          {/* green rating-style card */}
+          {/* gradient rating-style card */}
           <Reveal className="h-full">
             <div className="grain relative flex h-full min-h-[150px] items-center justify-center overflow-hidden rounded-3xl bg-brand-gradient p-6">
               <p className="text-center font-heading text-[2rem] font-extrabold uppercase text-white leading-[0.95] lg:[writing-mode:vertical-rl] lg:rotate-180 lg:text-[2.6rem]">

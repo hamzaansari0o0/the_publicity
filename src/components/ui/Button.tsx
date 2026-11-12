@@ -6,7 +6,7 @@ import { ArrowRight } from "@/components/ui/icons";
 type Variant = "primary" | "light" | "dark";
 
 /**
- * primary - brand green gradient (white label)
+ * primary - brand red-to-gold gradient (white label)
  * light   - white pill, works on dark sections and on tinted cards
  * dark    - subtle pill that adapts to the section theme
  */

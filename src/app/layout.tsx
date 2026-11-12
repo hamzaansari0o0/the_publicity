@@ -67,6 +67,9 @@ const jsonLd = {
   image: `${siteConfig.url}/opengraph-image.jpg`,
   telephone: siteConfig.phone,
   email: siteConfig.email,
+  sameAs: siteConfig.socials
+    .filter((social) => social.key !== "whatsapp")
+    .map((social) => social.href),
   areaServed: siteConfig.city,
   address: {
     "@type": "PostalAddress",

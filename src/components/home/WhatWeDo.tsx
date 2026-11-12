@@ -46,8 +46,8 @@ export function WhatWeDo() {
       className="relative isolate overflow-hidden bg-page py-24 text-fg md:py-32"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute -left-[12%] top-[20%] h-[70%] w-[45%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.20),transparent)] blur-3xl" />
-        <div className="absolute -right-[12%] bottom-[-10%] h-[70%] w-[45%] rounded-full bg-[radial-gradient(closest-side,rgba(0,135,68,.22),transparent)] blur-3xl" />
+        <div className="absolute -left-[12%] top-[20%] h-[70%] w-[45%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.20),transparent)] blur-3xl" />
+        <div className="absolute -right-[12%] bottom-[-10%] h-[70%] w-[45%] rounded-full bg-[radial-gradient(closest-side,rgba(155,28,36,.22),transparent)] blur-3xl" />
       </div>
       <div className="container-x">
         <SectionLabel number="02" label="Who we are" />

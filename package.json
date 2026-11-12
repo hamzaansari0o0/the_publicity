@@ -14,6 +14,7 @@
     "inquiries": "node --env-file-if-exists=.env scripts/db-tools.mjs inquiries"
   },
   "dependencies": {
+    "lucide-react": "^1.72.0",
     "mongodb": "^7.8.0",
     "next": "16.4.5",
     "qrcode": "^1.5.4",

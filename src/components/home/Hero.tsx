@@ -15,9 +15,9 @@ const highlights = [
 function HeroBackdrop() {
   return (
     <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden bg-page">
-      <div className="animate-drift absolute -right-[12%] -top-[22%] h-[85%] w-[62%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.30),rgba(0,135,68,.10)_62%,transparent)] blur-3xl" />
+      <div className="animate-drift absolute -right-[12%] -top-[22%] h-[85%] w-[62%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.30),rgba(155,28,36,.10)_62%,transparent)] blur-3xl" />
       <div
-        className="animate-drift absolute -bottom-[30%] -left-[14%] h-[70%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(0,135,68,.16),transparent)] blur-3xl"
+        className="animate-drift absolute -bottom-[30%] -left-[14%] h-[70%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(155,28,36,.16),transparent)] blur-3xl"
         style={{ animationDelay: "-9s" }}
       />
       {/* faint dot grid, fading out downwards */}

@@ -3,7 +3,7 @@ import { PixelTrail } from "@/components/art/PixelTrail";
 import { LogoMark } from "@/components/ui/Logo";
 import { Reveal } from "@/components/ui/Reveal";
 
-/** Full-bleed statement banner in the logo's green gradient. */
+/** Full-bleed statement banner in the red-to-gold gradient. */
 export function PromiseBanner() {
   return (
     <section className="grain relative isolate flex min-h-[540px] items-center overflow-hidden py-24 md:min-h-[660px]">

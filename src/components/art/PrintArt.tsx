@@ -19,7 +19,7 @@ const BODY: CSSProperties = {
   fontWeight: 600,
 };
 
-const BRAND = "#00A651";
+const BRAND = "#C9971C";
 const INK = "#262626";
 
 /** White rounded card containing the (decorative) QR code. */
@@ -45,8 +45,8 @@ function Flyer({ id }: ArtProps) {
     <>
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#19C46A" />
-          <stop offset="1" stopColor="#006B35" />
+          <stop offset="0" stopColor="#E0B13A" />
+          <stop offset="1" stopColor="#7A1218" />
         </linearGradient>
       </defs>
       <rect width="400" height="500" fill={`url(#${id}bg)`} />
@@ -82,11 +82,11 @@ function Newsletter({ id }: ArtProps) {
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#1F2224" />
-          <stop offset="1" stopColor="#0A8A4B" />
+          <stop offset="1" stopColor="#A3262B" />
         </linearGradient>
         <linearGradient id={`${id}ph`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#5BD99A" />
-          <stop offset="1" stopColor="#008744" />
+          <stop offset="0" stopColor="#EBCB73" />
+          <stop offset="1" stopColor="#9B1C24" />
         </linearGradient>
         <filter id={`${id}sh`} x="-20%" y="-20%" width="140%" height="140%">
           <feDropShadow dx="0" dy="14" stdDeviation="14" floodColor="#000" floodOpacity=".45" />
@@ -132,11 +132,11 @@ function Flex({ id }: ArtProps) {
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#262626" />
-          <stop offset="1" stopColor="#0A7A43" />
+          <stop offset="1" stopColor="#8B1A1F" />
         </linearGradient>
         <linearGradient id={`${id}bn`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#19C46A" />
-          <stop offset="1" stopColor="#008744" />
+          <stop offset="0" stopColor="#E0B13A" />
+          <stop offset="1" stopColor="#9B1C24" />
         </linearGradient>
       </defs>
       <rect width="400" height="500" fill={`url(#${id}bg)`} />
@@ -174,11 +174,11 @@ function Standee({ id }: ArtProps) {
     <>
       <defs>
         <radialGradient id={`${id}bg`} cx=".5" cy=".35" r=".85">
-          <stop offset="0" stopColor="#1F7A4A" />
+          <stop offset="0" stopColor="#7B1A1E" />
           <stop offset="1" stopColor="#1B1E20" />
         </radialGradient>
         <linearGradient id={`${id}ph`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#008744" />
+          <stop offset="0" stopColor="#9B1C24" />
           <stop offset="1" stopColor="#2D3134" />
         </linearGradient>
       </defs>
@@ -209,13 +209,13 @@ function Social({ id }: ArtProps) {
     <>
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#006B35" />
-          <stop offset=".55" stopColor="#00A651" />
-          <stop offset="1" stopColor="#7ED9A8" />
+          <stop offset="0" stopColor="#7A1218" />
+          <stop offset=".55" stopColor="#C9971C" />
+          <stop offset="1" stopColor="#F0D58A" />
         </linearGradient>
         <linearGradient id={`${id}ph`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#2D3134" />
-          <stop offset="1" stopColor="#008744" />
+          <stop offset="1" stopColor="#9B1C24" />
         </linearGradient>
         <filter id={`${id}sh`} x="-30%" y="-30%" width="160%" height="160%">
           <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="#000" floodOpacity=".35" />
@@ -234,11 +234,11 @@ function Social({ id }: ArtProps) {
       <circle cx="176" cy="308" r="8" fill="none" stroke="#fff" strokeWidth="2.5" opacity=".85" />
       <path d="M204 302l14 7-14 7Z" fill="#fff" opacity=".85" />
       {[0, 1, 2].map((i) => (
-        <rect key={i} x={120 + i * 56} y="338" width="48" height="48" rx="8" fill={["#00A651", "#008744", "#2D3134"][i]} opacity=".85" />
+        <rect key={i} x={120 + i * 56} y="338" width="48" height="48" rx="8" fill={["#C9971C", "#9B1C24", "#2D3134"][i]} opacity=".85" />
       ))}
       <g filter={`url(#${id}sh)`}>
         <rect x="236" y="224" width="136" height="46" rx="23" fill="#fff" />
-        <circle cx="262" cy="247" r="12" fill="#00A651" />
+        <circle cx="262" cy="247" r="12" fill="#C9971C" />
         <path d="M257 247l4 4 7-8" stroke="#fff" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         <text x="282" y="253" style={BODY} fontSize="15" fill={INK}>
           New lead!
@@ -257,7 +257,7 @@ function Qr({ id }: ArtProps) {
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#262626" />
-          <stop offset="1" stopColor="#0B6B3A" />
+          <stop offset="1" stopColor="#6F1016" />
         </linearGradient>
         <filter id={`${id}glow`} x="-20%" y="-300%" width="140%" height="700%">
           <feGaussianBlur stdDeviation="6" />
@@ -296,8 +296,8 @@ function Cafe({ id }: ArtProps) {
     <>
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#19C46A" />
-          <stop offset="1" stopColor="#006B35" />
+          <stop offset="0" stopColor="#E0B13A" />
+          <stop offset="1" stopColor="#7A1218" />
         </linearGradient>
       </defs>
       <rect width="400" height="500" fill={`url(#${id}bg)`} />
@@ -326,7 +326,7 @@ function HomeArt({ id }: ArtProps) {
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#2D3134" />
-          <stop offset="1" stopColor="#0A8A4B" />
+          <stop offset="1" stopColor="#A3262B" />
         </linearGradient>
       </defs>
       <rect width="400" height="500" fill={`url(#${id}bg)`} />
@@ -337,8 +337,8 @@ function HomeArt({ id }: ArtProps) {
         <rect x="104" y="232" width="192" height="168" fill="#fff" />
         <path d="M84 238 200 128l116 110Z" fill={BRAND} />
         <rect x="176" y="296" width="48" height="104" rx="4" fill={INK} opacity=".85" />
-        <rect x="124" y="268" width="36" height="36" rx="4" fill="#CDEBD9" />
-        <rect x="240" y="268" width="36" height="36" rx="4" fill="#CDEBD9" />
+        <rect x="124" y="268" width="36" height="36" rx="4" fill="#F6E7C1" />
+        <rect x="240" y="268" width="36" height="36" rx="4" fill="#F6E7C1" />
         <rect x="64" y="332" width="6" height="80" fill="#fff" />
         <rect x="30" y="326" width="96" height="48" rx="6" fill="#fff" />
         <text x="78" y="348" style={HEAD} fontSize="14" fill={BRAND} textAnchor="middle" letterSpacing="1">
@@ -357,7 +357,7 @@ function Bag({ id }: ArtProps) {
     <>
       <defs>
         <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#00A651" />
+          <stop offset="0" stopColor="#C9971C" />
           <stop offset="1" stopColor="#262626" />
         </linearGradient>
       </defs>

@@ -8,7 +8,7 @@ trackable **QR code on every printed item** so physical marketing becomes measur
 
 The layout follows the "Arigo" agency template (big Phudu headlines, numbered sections,
 stacked cards, slide-in menu), rebuilt in Tailwind and re-themed with the agency's logo
-palette: green gradient `#008744 -> #00A651`, charcoal `#262626` / `#2D3134` and white.
+palette: dark red `#9B1C24` + dark gold `#C9971C` gradients on charcoal `#262626` / `#2D3134` and white.
 Sections alternate between light and dark. Illustrations are original SVGs.
 
 ## Getting started

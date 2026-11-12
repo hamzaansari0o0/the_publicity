@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/* Brand palette - taken from the logo:                                */
-/*   green gradient  #008744 -> #00A651                                */
-/*   charcoal        #262626 / #2D3134                                 */
-/*   white           #FFFFFF                                           */
+/* Brand palette - premium dark red + dark gold:                       */
+/*   dark red   #9B1C24 (deep #7A1218)                                 */
+/*   dark gold  #C9971C (deep #B8860B)                                 */
+/*   charcoal   #262626 / #2D3134,  white #FFFFFF                      */
 /*                                                                     */
 /* Semantic tokens (page, surface, fg, muted, line, accent) change     */
 /* with the nearest [data-theme] ancestor, so the same classes work on */
@@ -13,11 +13,13 @@
 :root,
 [data-theme="light"] {
   --page: #ffffff;
-  --surface: #f3f6f4;
+  --surface: #f8f4ed;
   --fg: #262626;
   --muted: #5b6268;
   --line: rgb(38 38 38 / 0.14);
-  --accent: #008744; /* green text on white: 4.6:1 contrast */
+  --accent: #9b1c24; /* dark red text on white: 8:1 contrast */
+  --grad-from: #9b1c24; /* gradient text: dark red -> dark gold */
+  --grad-to: #b8860b;
   --danger: #b42318;
 }
 
@@ -27,7 +29,9 @@
   --fg: #ffffff;
   --muted: #aab1b6;
   --line: rgb(255 255 255 / 0.14);
-  --accent: #2bd17e; /* green text on charcoal */
+  --accent: #e8bb45; /* gold text on charcoal */
+  --grad-from: #e04b52; /* brighter red -> gold so it reads on charcoal */
+  --grad-to: #f0c24e;
   --danger: #fda29b;
 }
 
@@ -43,10 +47,10 @@
   /* fixed brand colours (do not change with the theme) */
   --color-ink: #262626;
   --color-slate: #2d3134;
-  --color-brand: #00a651;
-  --color-brand-600: #008744;
-  --color-brand-700: #00763b;
-  --color-mint: #e6f5ec;
+  --color-brand: #c9971c;
+  --color-brand-600: #9b1c24;
+  --color-brand-700: #7a1218;
+  --color-mint: #fbf0d9;
 
   --font-heading: var(--font-phudu), "Arial Narrow", Impact, sans-serif;
   --font-sans: var(--font-instrument), system-ui, -apple-system, "Segoe UI",
@@ -126,7 +130,7 @@
   }
 
   ::selection {
-    background: var(--color-brand);
+    background: var(--color-brand-600);
     color: #fff;
   }
 
@@ -140,19 +144,19 @@
   }
 }
 
-/* The logo's green gradient. */
+/* Premium dark-red -> dark-gold gradient. */
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, #008744 0%, #00a651 100%);
+  background-image: linear-gradient(135deg, #8b1a1f 0%, #a8321e 48%, #c9971c 100%);
 }
 
-/* Deeper start so white button labels keep a readable contrast (>= 4.5:1). */
+/* Deep-red start so white button labels keep a readable contrast (>= 4.5:1). */
 @utility bg-brand-button {
-  background-image: linear-gradient(120deg, #00763b 0%, #008744 45%, #00a651 100%);
+  background-image: linear-gradient(120deg, #6f1016 0%, #9b1c24 52%, #c9971c 100%);
 }
 
-/* Gradient-filled text for accent words in headlines. */
+/* Gradient-filled text for accent words in headlines (theme-aware). */
 @utility text-brand-gradient {
-  background-image: linear-gradient(100deg, #008744 0%, #00a651 100%);
+  background-image: linear-gradient(100deg, var(--grad-from) 0%, var(--grad-to) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

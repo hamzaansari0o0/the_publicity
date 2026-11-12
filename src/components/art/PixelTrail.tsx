@@ -9,7 +9,7 @@ function hash(col: number, row: number) {
   return ((col * 73856093) ^ (row * 19349663)) >>> 0;
 }
 
-const TONES = ["#2D3134", "#008744", "#00A651"] as const;
+const TONES = ["#2D3134", "#9B1C24", "#C9971C"] as const;
 
 type Cell = { x: number; y: number; size: number; fill: string; opacity: number };
 

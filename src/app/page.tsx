@@ -9,6 +9,7 @@ import { PromiseBanner } from "@/components/home/PromiseBanner";
 import { Samples } from "@/components/home/Samples";
 import { ServicesList } from "@/components/home/ServicesList";
 import { WhatWeDo } from "@/components/home/WhatWeDo";
+import { SharedPackagesSection } from "@/components/sections/SharedPackagesSection";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -22,6 +23,7 @@ export default function HomePage() {
       <Samples />
       <PromiseBanner />
       <ServicesList />
+      <SharedPackagesSection />
       <Audience />
       <CtaBand />
       <CircleRow />

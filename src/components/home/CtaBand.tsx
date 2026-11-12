@@ -32,8 +32,8 @@ export function CtaBand() {
       className="grain relative isolate overflow-hidden bg-page py-24 text-fg md:py-32"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute -left-[10%] top-[10%] h-[90%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(0,166,81,.28),transparent)] blur-3xl" />
-        <div className="absolute -right-[10%] top-[-10%] h-[90%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(0,135,68,.30),transparent)] blur-3xl" />
+        <div className="absolute -left-[10%] top-[10%] h-[90%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(201,151,28,.28),transparent)] blur-3xl" />
+        <div className="absolute -right-[10%] top-[-10%] h-[90%] w-[55%] rounded-full bg-[radial-gradient(closest-side,rgba(155,28,36,.30),transparent)] blur-3xl" />
         <PixelTrail className="absolute bottom-8 left-4 hidden w-52 opacity-60 lg:block" />
         <PixelTrail flip className="absolute right-4 top-10 hidden w-52 opacity-60 lg:block" />
       </div>
