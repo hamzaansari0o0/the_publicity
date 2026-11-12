@@ -137,7 +137,8 @@ export function Hero() {
               />
             </div>
 
-            <div className="animate-float absolute -left-3 top-[22%] w-[168px] rounded-2xl bg-white p-4 text-center shadow-xl shadow-ink/15 ring-1 ring-ink/5 sm:-left-10">
+            {/* Hidden on phones; tablet and up: hangs off the left edge of the photo. */}
+            <div className="animate-float absolute -left-10 top-[22%] hidden w-[168px] rounded-2xl bg-white p-4 text-center shadow-xl shadow-ink/15 ring-1 ring-ink/5 sm:block">
               <QrIcon className="mx-auto size-6 text-accent" />
               <p className="mt-1.5 font-heading text-5xl font-extrabold leading-none text-ink">
                 100<span className="text-2xl font-light text-ink/60">%</span>

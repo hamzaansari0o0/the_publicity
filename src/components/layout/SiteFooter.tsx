@@ -60,21 +60,23 @@ export function SiteFooter() {
         </div>
 
         <div className="pb-14 lg:py-20 lg:pl-14">
-          <h2 className="font-heading text-[clamp(2.5rem,4vw,3.75rem)] font-extrabold uppercase">
+          <p className="font-heading text-[clamp(2.5rem,4vw,3.75rem)] font-extrabold uppercase">
             Quick Links
-          </h2>
-          <ul className="mt-7 flex max-w-[460px] flex-wrap gap-x-7 gap-y-2">
-            {footerLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="font-heading text-2xl font-bold uppercase text-fg/50 transition-colors hover:text-accent md:text-[1.7rem]"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          </p>
+          <nav aria-label="Quick links">
+            <ul className="mt-7 flex max-w-[460px] flex-wrap gap-x-7 gap-y-2">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="font-heading text-2xl font-bold uppercase text-fg/50 transition-colors hover:text-accent md:text-[1.7rem]"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           <div className="mt-12 lg:mt-16">
             <Link href="/" aria-label={`${siteConfig.name} - home`} className="inline-block">

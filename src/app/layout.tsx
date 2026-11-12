@@ -2,7 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Phudu } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/data/site";
+import { siteSchema } from "@/lib/schema";
+import { defaultTitle, homeDescription } from "@/lib/seo";
 import "./globals.css";
 
 const phudu = Phudu({
@@ -17,15 +20,13 @@ const instrumentSans = Instrument_Sans({
   display: "swap",
 });
 
-const defaultTitle = `${siteConfig.name} | Your Phygital marketing partner in ${siteConfig.city}`;
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: defaultTitle,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: homeDescription,
   applicationName: siteConfig.name,
   keywords: [
     "marketing agency Lahore",
@@ -40,51 +41,19 @@ export const metadata: Metadata = {
     type: "website",
     siteName: siteConfig.name,
     title: defaultTitle,
-    description: siteConfig.description,
+    description: homeDescription,
     locale: "en_PK",
-    url: "/",
   },
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
-    description: siteConfig.description,
+    description: homeDescription,
   },
 };
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
   colorScheme: "light",
-};
-
-/** Structured data so search engines understand the business. */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: siteConfig.name,
-  description: siteConfig.description,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/images/logo.png`,
-  image: `${siteConfig.url}/opengraph-image.jpg`,
-  telephone: siteConfig.phone,
-  email: siteConfig.email,
-  sameAs: siteConfig.socials
-    .filter((social) => social.key !== "whatsapp")
-    .map((social) => social.href),
-  areaServed: siteConfig.city,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: siteConfig.city,
-    addressCountry: "PK",
-  },
-  makesOffer: [
-    "Newsletters",
-    "Pamphlets & Flyers",
-    "Flex & Standees",
-    "Social Media Marketing",
-  ].map((name) => ({
-    "@type": "Offer",
-    itemOffered: { "@type": "Service", name },
-  })),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -100,12 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={siteSchema()} />
       </body>
     </html>
   );

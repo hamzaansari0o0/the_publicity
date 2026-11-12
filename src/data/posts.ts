@@ -8,9 +8,15 @@ export type PostBlock =
 export type Post = {
   slug: string;
   title: string;
+  /** `<title>` text (the site name is appended automatically; keep it <= 44 chars). */
+  metaTitle: string;
   category: string;
   /** ISO date (yyyy-mm-dd). */
   date: string;
+  /** ISO date of the last meaningful edit; omit until the post is revised. */
+  updated?: string;
+  /** Slug of the service this article relates to (used for internal links). */
+  service: string;
   readTime: string;
   excerpt: string;
   art: ArtKind;
@@ -25,8 +31,10 @@ export const posts: Post[] = [
   {
     slug: "why-every-flyer-needs-a-qr-code",
     title: "Why Every Flyer Needs a QR Code",
+    metaTitle: "Why Every Flyer Needs a QR Code",
     category: "Tracking",
     date: "2026-10-28",
+    service: "flyers",
     readTime: "4 min read",
     excerpt:
       "Print builds local trust - but without a way to measure it, you are guessing. Here is how a simple QR code changes that.",
@@ -60,8 +68,10 @@ export const posts: Post[] = [
   {
     slug: "plan-a-hyper-local-flyer-drop",
     title: "How to Plan a Hyper-Local Flyer Drop Around Your Shop",
+    metaTitle: "Plan a Hyper-Local Flyer Drop",
     category: "Flyers",
     date: "2026-10-21",
+    service: "flyers",
     readTime: "5 min read",
     excerpt:
       "Flyers work best when they are targeted. Here is a simple way to choose your area, your message and your measure of success.",
@@ -96,8 +106,10 @@ export const posts: Post[] = [
   {
     slug: "flex-banner-or-standee",
     title: "Flex Banner or Standee? Choosing the Right Display for Your Shop",
+    metaTitle: "Flex Banner or Standee? How to Choose",
     category: "Print Tips",
     date: "2026-10-14",
+    service: "flex-standees",
     readTime: "4 min read",
     excerpt:
       "Both grab attention - but they shine in different places. Here is how to pick the right one.",
@@ -136,8 +148,10 @@ export const posts: Post[] = [
   {
     slug: "printed-newsletters-for-local-brands",
     title: "Printed Newsletters: Keeping Local Customers in the Loop",
+    metaTitle: "Printed Newsletters for Local Customers",
     category: "Newsletters",
     date: "2026-10-07",
+    service: "newsletters",
     readTime: "4 min read",
     excerpt:
       "From café menus to new listings, a printed newsletter gives local brands room to tell a bigger story.",

@@ -16,6 +16,27 @@ const whatsappDigits = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(
 const phone = fromEnv(process.env.NEXT_PUBLIC_CONTACT_PHONE, "+92 323 27 27 100");
 const email = fromEnv(process.env.NEXT_PUBLIC_CONTACT_EMAIL, "sendtome2003@gmail.com");
 
+/**
+ * Public origin used for canonical URLs, the sitemap, Open Graph and JSON-LD.
+ *
+ * `NEXT_PUBLIC_SITE_URL` wins when it is a real address. On Vercel a localhost
+ * value (or none at all) must never reach production - that made every
+ * canonical, sitemap entry and social image point at localhost - so we fall
+ * back to the project's production domain, which Vercel exposes at build time.
+ */
+function resolveSiteUrl(): string {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const isLocal = (url: string) => /^https?:\/\/(localhost|127\.0\.0\.1)/i.test(url);
+  const onVercel = Boolean(process.env.VERCEL);
+
+  if (configured && !(onVercel && isLocal(configured))) return configured;
+
+  const vercelDomain = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (onVercel && vercelDomain) return `https://${vercelDomain}`;
+
+  return configured || "http://localhost:3000";
+}
+
 const hasRealPhone = phone.replace(/\D/g, "").length >= 10;
 const hasRealEmail = !email.toLowerCase().endsWith("@example.com");
 
@@ -55,10 +76,7 @@ export const siteConfig = {
   tagline: "Your Phygital marketing partner",
   description:
     "The Publicity is Lahore's Phygital marketing agency: print media and distribution, custom QR-based tracking and social media management - bridging physical print and digital social media so local brands can see the real results of their marketing.",
-  url: fromEnv(process.env.NEXT_PUBLIC_SITE_URL, "http://localhost:3000").replace(
-    /\/$/,
-    "",
-  ),
+  url: resolveSiteUrl().replace(/\/$/, ""),
   /** Public domain shown on the agency's marketing material. */
   domain: "www.publicity.com.pk",
   city: "Lahore",

@@ -5,14 +5,17 @@ import { PageBanner } from "@/components/layout/PageBanner";
 import { ButtonLink } from "@/components/ui/Button";
 import { Clock, Mail, MapPin, Phone } from "@/components/ui/icons";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig, whatsappLink } from "@/data/site";
+import { breadcrumbSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Us: Start Your Campaign",
   description:
     "Tell The Publicity about your business and the area you want to reach. We'll show you how print and digital marketing can work together.",
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 function InfoCard({
   icon,
@@ -116,6 +119,12 @@ export default function ContactPage() {
           </aside>
         </div>
       </section>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact Us", path: "/contact" },
+        ])}
+      />
     </>
   );
 }

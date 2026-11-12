@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import { ArtStage } from "@/components/art/ArtStage";
 import { PrintArt } from "@/components/art/PrintArt";
 import { PageBanner } from "@/components/layout/PageBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight } from "@/components/ui/icons";
-import { siteConfig } from "@/data/site";
+import { getService } from "@/data/services";
 import {
   formatPostDate,
   getAdjacentPosts,
@@ -14,6 +15,8 @@ import {
   posts,
   type PostBlock,
 } from "@/data/posts";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
@@ -26,18 +29,16 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
 
-  return {
-    title: post.title,
+  return buildMetadata({
+    title: post.metaTitle,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    article: {
       publishedTime: post.date,
-      url: `/blog/${post.slug}`,
+      modifiedTime: post.updated,
+      section: post.category,
     },
-  };
+  });
 }
 
 function Block({ block }: { block: PostBlock }) {
@@ -85,16 +86,7 @@ export default async function BlogPostPage({
     ),
   );
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
-    author: { "@type": "Organization", name: siteConfig.name },
-    publisher: { "@type": "Organization", name: siteConfig.name },
-  };
+  const relatedService = getService(post.service);
 
   return (
     <>
@@ -130,6 +122,26 @@ export default async function BlogPostPage({
                 <Block key={index} block={block} />
               ))}
             </div>
+
+            {relatedService ? (
+              <p className="mt-10 max-w-[760px] text-lg leading-relaxed text-fg/80">
+                Want this for your business? Learn more about our{" "}
+                <Link
+                  href={`/services/${relatedService.slug}`}
+                  className="font-semibold text-accent underline underline-offset-4"
+                >
+                  {relatedService.title}
+                </Link>{" "}
+                service, or{" "}
+                <Link
+                  href="/contact"
+                  className="font-semibold text-accent underline underline-offset-4"
+                >
+                  get in touch
+                </Link>
+                .
+              </p>
+            ) : null}
 
             <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-fg/10 pt-8">
               <span className="text-sm text-fg/50">Category:</span>
@@ -229,11 +241,13 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
+      <JsonLd data={blogPostingSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
       />
     </>
   );

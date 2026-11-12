@@ -4,11 +4,15 @@ import { notFound } from "next/navigation";
 import { PrintArt } from "@/components/art/PrintArt";
 import { CtaBand } from "@/components/home/CtaBand";
 import { PageBanner } from "@/components/layout/PageBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { formatPostDate, posts } from "@/data/posts";
 import { getAdjacentServices, getService, services } from "@/data/services";
+import { breadcrumbSchema, servicePageSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -21,11 +25,11 @@ export async function generateMetadata({
   const service = getService(slug);
   if (!service) return {};
 
-  return {
-    title: service.title,
-    description: service.summary,
-    alternates: { canonical: `/services/${service.slug}` },
-  };
+  return buildMetadata({
+    title: service.metaTitle,
+    description: service.metaDescription,
+    path: `/services/${service.slug}`,
+  });
 }
 
 export default async function ServicePage({
@@ -36,6 +40,7 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const { prev, next } = getAdjacentServices(service.slug);
+  const relatedPosts = posts.filter((post) => post.service === service.slug);
 
   return (
     <>
@@ -74,7 +79,7 @@ export default async function ServicePage({
           <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
             <div>
               <h2 className="text-[clamp(2rem,4vw,3.4rem)] font-extrabold leading-[1]">
-                Services overview
+                {service.title} overview
               </h2>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {service.tags.map((tag) => (
@@ -125,6 +130,7 @@ export default async function ServicePage({
       <section className="py-12 md:py-20">
         <div className="container-x">
           <SectionLabel number="03" label="How it works" />
+          <h2 className="sr-only">How {service.title} works</h2>
           <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {service.steps.map((step, index) => (
               <li key={step.title} className="relative">
@@ -166,6 +172,34 @@ export default async function ServicePage({
         </div>
       </section>
 
+      {/* related articles (internal links) */}
+      {relatedPosts.length > 0 ? (
+        <section className="py-12 md:py-20">
+          <div className="container-x">
+            <h2 className="text-[clamp(1.9rem,3.4vw,2.9rem)] font-extrabold leading-[1]">
+              Related reading
+            </h2>
+            <ul className="mt-8 grid gap-5 sm:grid-cols-2">
+              {relatedPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group flex h-full flex-col gap-2 rounded-3xl border border-fg/10 bg-surface p-7 transition-colors hover:border-brand/60"
+                  >
+                    <span className="text-sm text-fg/50">
+                      {formatPostDate(post.date)}
+                    </span>
+                    <span className="font-heading text-xl font-extrabold uppercase leading-[1.05] transition-colors group-hover:text-accent">
+                      {post.title}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
       {/* prev / next */}
       <section className="pb-24 md:pb-32">
         <nav
@@ -192,6 +226,14 @@ export default async function ServicePage({
       </section>
 
       <CtaBand />
+      <JsonLd data={servicePageSchema(service)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: service.title, path: `/services/${service.slug}` },
+        ])}
+      />
     </>
   );
 }

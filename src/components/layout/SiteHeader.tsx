@@ -200,7 +200,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="mt-auto pt-10">
-          <h2 className="font-heading text-xl font-bold">Contact Info</h2>
+          <p className="font-heading text-xl font-bold">Contact Info</p>
           <ul className="mt-4 space-y-3 text-sm text-fg/80">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 size-5 shrink-0 text-accent" />

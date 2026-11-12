@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import { PageBanner } from "@/components/layout/PageBanner";
 import { PostCard } from "@/components/sections/PostCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { posts } from "@/data/posts";
+import { breadcrumbSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata: Metadata = buildMetadata({
+  title: "Print & QR Marketing Tips for Local Brands",
   description:
     "Practical ideas for local brands: how to plan flyer campaigns, choose between flex and standees, use QR codes and make print measurable.",
-  alternates: { canonical: "/blog" },
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (
@@ -33,6 +36,12 @@ export default function BlogPage() {
           ))}
         </div>
       </section>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ])}
+      />
     </>
   );
 }

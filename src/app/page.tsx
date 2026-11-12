@@ -10,10 +10,13 @@ import { Samples } from "@/components/home/Samples";
 import { ServicesList } from "@/components/home/ServicesList";
 import { WhatWeDo } from "@/components/home/WhatWeDo";
 import { SharedPackagesSection } from "@/components/sections/SharedPackagesSection";
+import { buildMetadata, defaultTitle, homeDescription } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+export const metadata: Metadata = buildMetadata({
+  absoluteTitle: defaultTitle,
+  description: homeDescription,
+  path: "/",
+});
 
 export default function HomePage() {
   return (

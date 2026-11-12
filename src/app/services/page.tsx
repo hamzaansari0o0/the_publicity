@@ -3,17 +3,20 @@ import Link from "next/link";
 import { PrintArt } from "@/components/art/PrintArt";
 import { CtaBand } from "@/components/home/CtaBand";
 import { PageBanner } from "@/components/layout/PageBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { services } from "@/data/services";
 import { cn } from "@/lib/cn";
+import { breadcrumbSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = buildMetadata({
+  title: "Print & Social Media Marketing Services",
   description:
-    "Newsletters, pamphlets and flyers, flex and standees, and social media marketing - print and digital services for local businesses, with a trackable QR code on every printed item.",
-  alternates: { canonical: "/services" },
-};
+    "Newsletters, flyers, flex and standees, and social media marketing for local businesses - with a trackable QR code on every printed item.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
@@ -84,6 +87,12 @@ export default function ServicesPage() {
       </section>
 
       <CtaBand />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ])}
+      />
     </>
   );
 }

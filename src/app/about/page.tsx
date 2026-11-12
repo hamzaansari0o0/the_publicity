@@ -4,17 +4,20 @@ import { CtaBand } from "@/components/home/CtaBand";
 import { PhygitalModel } from "@/components/home/PhygitalModel";
 import { PromiseBanner } from "@/components/home/PromiseBanner";
 import { PageBanner } from "@/components/layout/PageBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SplitText } from "@/components/ui/SplitText";
+import { breadcrumbSchema } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = buildMetadata({
+  title: "About Us: Print + Digital Marketing, Lahore",
   description:
-    "The Publicity is a modern hybrid marketing agency in Lahore, combining physical print media with digital social media marketing as an all-in-one growth partner for local businesses.",
-  alternates: { canonical: "/about" },
-};
+    "A Lahore hybrid marketing agency combining physical print with digital social media - an all-in-one growth partner for local businesses, with QR-based tracking.",
+  path: "/about",
+});
 
 const values = [
   {
@@ -57,7 +60,7 @@ export default function AboutPage() {
             <figure className="overflow-hidden rounded-[28px] border border-line shadow-2xl shadow-ink/15">
               <Image
                 src="/images/cover.jpg"
-                alt="The Publicity - Your Phygital Marketing Partner: print media and distribution, custom QR-based tracking and social media management. Call +92 323 27 27 100 or visit www.publicity.com.pk"
+                alt="The Publicity cover artwork: print media and distribution, custom QR-based tracking and social media management"
                 width={2752}
                 height={1536}
                 sizes="(min-width: 1360px) 1296px, 94vw"
@@ -113,6 +116,12 @@ export default function AboutPage() {
       <HowWeWork number="03" />
       <PromiseBanner />
       <CtaBand />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About Us", path: "/about" },
+        ])}
+      />
     </>
   );
 }

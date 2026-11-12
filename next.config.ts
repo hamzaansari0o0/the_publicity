@@ -12,6 +12,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: { formats: ["image/avif", "image/webp"] },
   cacheComponents: true,
   // `false` makes the first visit to an unknown /services/x or /blog/x wait for
   // the render, so `notFound()` returns a real HTTP 404 (with `true`, the first

@@ -7,6 +7,10 @@ export type Service = {
   summary: string;
   /** Opening paragraph on the service page. */
   lead: string;
+  /** `<title>` text (the site name is appended automatically; keep it <= 44 chars). */
+  metaTitle: string;
+  /** Meta description, roughly 120-160 characters. */
+  metaDescription: string;
   art: ArtKind;
   art2: ArtKind;
   /** How the title is split into big/small words in the home-page list. */
@@ -42,6 +46,9 @@ export const services: Service[] = [
     title: "Newsletters",
     summary:
       "Printed updates for brand news, promotions and customer engagement.",
+    metaTitle: "Newsletter Printing for Local Brands",
+    metaDescription:
+      "We design and print newsletters for brand news, promotions and customer engagement in Lahore - each with a trackable QR code to WhatsApp or your website.",
     lead: "A newsletter puts your brand's story into your customers' hands. We design and print newsletters that carry your news, offers and updates - with a QR code that connects every reader to your WhatsApp, website or social pages.",
     art: "newsletter",
     art2: "qr",
@@ -79,6 +86,9 @@ export const services: Service[] = [
     title: "Pamphlets & Flyers",
     summary:
       "Fast, local distribution in specific areas - for example, within a 3km radius of your shop.",
+    metaTitle: "Flyer & Pamphlet Printing in Lahore",
+    metaDescription:
+      "Eye-catching flyers and pamphlets printed locally and distributed where it matters - for example, within 3km of your shop - each with a trackable QR code.",
     lead: "Flyers are the quickest way to reach the people who live and work around your business. We design eye-catching pamphlets, print them locally and help you target the exact areas that matter - each with its own QR code so you know what works.",
     art: "flyer",
     art2: "qr",
@@ -116,6 +126,9 @@ export const services: Service[] = [
     title: "Flex & Standees",
     summary:
       "Large visual displays for retail shops, promotions and local events.",
+    metaTitle: "Flex Banner & Standee Printing, Lahore",
+    metaDescription:
+      "Large flex banners and standees for shop fronts, promotions and local events, with a QR code big enough for passers-by to scan - and we count every scan.",
     lead: "When you need to be seen from across the street, go big. We design and produce flex banners and standees that make shop fronts, promotions and events impossible to miss - with a QR code passers-by can scan on the spot.",
     art: "flex",
     art2: "standee",
@@ -153,6 +166,9 @@ export const services: Service[] = [
     title: "Social Media Marketing",
     summary:
       "Managing social media accounts and running digital ads to support your physical marketing.",
+    metaTitle: "Social Media Marketing for Local Brands",
+    metaDescription:
+      "Social media account management and digital ads that support your print campaigns, so every QR scan lands on a channel we look after. Based in Lahore.",
     lead: "Print gets you noticed in the real world; social media keeps the conversation going. We manage your accounts and run digital ads that support your physical campaigns - so everyone who scans a QR code lands somewhere worth visiting.",
     art: "social",
     art2: "qr",
