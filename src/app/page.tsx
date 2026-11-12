@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/home/CtaBand";
 import { Hero } from "@/components/home/Hero";
 import { PhygitalModel } from "@/components/home/PhygitalModel";
 import { PromiseBanner } from "@/components/home/PromiseBanner";
+import { RealExample } from "@/components/home/RealExample";
 import { Samples } from "@/components/home/Samples";
 import { ServicesList } from "@/components/home/ServicesList";
 import { WhatWeDo } from "@/components/home/WhatWeDo";
@@ -31,6 +32,7 @@ export default function HomePage() {
       <CtaBand />
       <CircleRow />
       <PhygitalModel />
+      <RealExample />
       <BlogPreview />
     </>
   );
